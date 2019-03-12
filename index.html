@@ -14,15 +14,27 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+      integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+      integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- <script src="store.js"></script> -->
   </head>
+
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#"
         ><i class="fas fa-drumstick-bite"></i> BBQ-Pals</a
       >
-      <div class="navbar" id="navbarNav">
+      <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
             <a class="nav-link" href="#"
@@ -39,13 +51,60 @@
       <div class="row">
         <div class="col">
           <div class="text-center">
-            <h1 class="display-4 text-center"><i class="fas fa-clipboard-list"></i><span class="text-primary"> Inventory</span></h1>
+            <h1 class="display-4 text-center">
+              <i class="fas fa-clipboard-list"></i
+              ><span class="text-primary"> Inventory</span>
+            </h1>
           </div>
         </div>
       </div>
-      
-      <div id="foodlist"></div>
-      
+
+      <div class="row">
+        <div class="col">
+          <table class="table table-striped mt-5" id="foodTable"></table>
+        </div>
+      </div>
     </div>
+
+    <!-- insert Javascript -->
+    <!-- boilerplate for fetching data with get -->
+    <script>
+      $(function() {
+        let serviceURL = "http://DESKTOP-OCK7KKR:8080/books";
+        let rows = "";
+        fetch(serviceURL)
+          .then(res => res.json())
+          .then(data => {
+            let foodList = data.Book;
+
+            if(foodList === undefined){
+              $("#foodTable").empty();
+              $("body").append(
+                "<div class=\"text-center\">Something went wrong with the data. Please try again later!</div>"
+              );
+            }
+
+            for(item in foodList){
+              eachRow = `
+              <td>${foodList[item].title}</td> 
+              <td>${foodList[item].isbn13}</td>
+              <td>${foodList[item].price}</td>
+              <td>${foodList[item].availability}</td>
+              <td><button class="btn btn-primary" type="submit">Add to Cart</button></td>`;
+
+              rows += "<tr>" + eachRow + "</tr>";
+            }
+            $("#foodTable").append(rows);
+            // console.log(foodList);
+          })
+
+          .catch(error => {
+            $("#foodTable").empty();
+            $("body").append(
+              "<div class=\"text-center\">Something went wrong with the data. Please try again later!</div>"
+            );
+          });
+      });
+    </script>
   </body>
 </html>
