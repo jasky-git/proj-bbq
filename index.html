@@ -30,23 +30,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-dark navbar-expand-sm bg-dark">
-      <a class="navbar-brand" href="#"
-        ><i class="fas fa-drumstick-bite"></i> BBQ-Pals</a
-      >
-      <!-- Links -->
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Inventory</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Checkout</a>
-        </li>
-      </ul>
-    </nav>
+    <?php include 'include/header.php';?>
     <div class="container">
       <div class="row">
         <div class="col">
@@ -92,7 +76,9 @@
     <!-- boilerplate for fetching data with get -->
     <script>
       $(function() {
-        let serviceURL = "http://DESKTOP-OCK7KKR:8080/books";
+        //Update this with TIBCO lrestdoc domain name with the port 
+        let serviceURL = "http://One-Punch-Machine:8080/books"; //jasky
+        //let serviceURL = "http://DESKTOP-OCK7KKR:8080/books"; //yazid
         let rows = "";
         fetch(serviceURL)
           .then(res => res.json())
