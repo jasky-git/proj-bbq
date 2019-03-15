@@ -55,10 +55,10 @@
           <table class="table table-striped">
             <thead>
               <tr>
-                <th>Title</th>
-                <th>ISBN</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Cost</th>
                 <th>Quantity</th>
-                <th></th>
               </tr>
             </thead>
             <tbody class="food-list">
@@ -77,13 +77,13 @@
     <script>
       $(function() {
         //Update this with TIBCO lrestdoc domain name with the port 
-        let serviceURL = "http://One-Punch-Machine:8080/books"; //jasky
+        let serviceURL = "http://DESKTOP-OK24Q1B:8080/inventory"; 
         //let serviceURL = "http://DESKTOP-OCK7KKR:8080/books"; //yazid
         let rows = "";
         fetch(serviceURL)
           .then(res => res.json())
           .then(data => {
-            let foodList = data.Book;
+            let foodList = data.item;
 
             if (foodList === undefined) {
               $("#foodTable").empty();
@@ -94,10 +94,10 @@
 
             for (item in foodList) {
               eachRow = `
-              <td>${foodList[item].title}</td> 
-              <td>${foodList[item].isbn13}</td>
-              <td class=\"item-price\">${foodList[item].price}</td>
-              <td class=\"item-qty\">${foodList[item].availability}</td>
+              <td>${foodList[item].name}</td> 
+              <td>${foodList[item].description}</td>
+              <td class=\"item-price\">${foodList[item].cost}</td>
+              <td class=\"item-qty\">${foodList[item].quantity}</td>
               <td><button class="btn btn-primary item-button" type="button">Add to Cart</button></td>`;
 
               rows += "<tr>" + eachRow + "</tr>";
