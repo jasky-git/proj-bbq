@@ -1,0 +1,7 @@
+{
+    "records": [],
+    "resources": [{
+        "location": "Service Descriptors/get_inventory.module.Process-get_inventory.json",
+        "type": "generated"
+    }]
+}

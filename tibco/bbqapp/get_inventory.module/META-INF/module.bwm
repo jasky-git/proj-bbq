@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sca:composite xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:BW="http://xsd.tns.tibco.com/amf/models/sca/implementationtype/BW" xmlns:XMLSchema="http://www.w3.org/2001/XMLSchema" xmlns:compositeext="http://schemas.tibco.com/amx/3.0/compositeext" xmlns:rest="http://xsd.tns.tibco.com/bw/models/binding/rest" xmlns:sca="http://www.osoa.org/xmlns/sca/1.0" xmlns:scact="http://xsd.tns.tibco.com/amf/models/sca/componentType" xmlns:scaext="http://xsd.tns.tibco.com/amf/models/sca/extensions" xmi:id="_NerSIEbZEemk_fUsBDV-iA" targetNamespace="http://tns.tibco.com/bw/composite/get_inventory.module" name="get_inventory.module" compositeext:version="1.0.0" compositeext:formatVersion="2">
+  <sca:service xmi:id="_eWEGAkbZEemk_fUsBDV-iA" name="get_inventory" promote="ComponentProcess/get_inventory">
+    <sca:interface.wsdl xmi:id="_eWN3AUbZEemk_fUsBDV-iA" interface="http://xmlns.example.com/20190315114715PLT#wsdl.interface(get_inventory)" scaext:wsdlLocation="../Processes/get_inventory/module/Process.bwp"/>
+    <scaext:binding xsi:type="rest:RestServiceBinding" xmi:id="_eWXoAEbZEemk_fUsBDV-iA" name="RestService" path="/get_inventory" docBasePath="http://localhost:7777/get_inventory.module" docResourcePath="get_inventory" basePath="/" connector="get_inventory.module.get_inventory" structuredData="true" technologyVersion="2.0" implementation="Service Descriptors/get_inventory.module.Process-get_inventory.json">
+      <operation xmi:id="_eWXoAkbZEemk_fUsBDV-iA" operationName="get" nickname="get-get_inventory" httpMethod="GET" responseStyle="element" requestStyle="element">
+        <clientFormat>json</clientFormat>
+        <clientRequestFormat>json</clientRequestFormat>
+      </operation>
+      <parameters xmi:id="_eXjTwEbZEemk_fUsBDV-iA"/>
+      <advancedConfig xmi:id="_eWXoAUbZEemk_fUsBDV-iA" blockingQueueSize="2147483647"/>
+    </scaext:binding>
+    <scact:bindingAdjunct xmi:id="_eWXoA0bZEemk_fUsBDV-iA" bindingName="RestService"/>
+  </sca:service>
+  <sca:property xmi:id="_OHciUEbZEemk_fUsBDV-iA" name="BW.APPNODE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_OHvdQEbZEemk_fUsBDV-iA" name="BW.DEPLOYMENTUNIT.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_OHvdQUbZEemk_fUsBDV-iA" name="BW.HOST.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_OH5OQEbZEemk_fUsBDV-iA" name="BW.DEPLOYMENTUNIT.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_OH5OQUbZEemk_fUsBDV-iA" name="BW.MODULE.VERSION" type="XMLSchema:string" scalable="true"/>
+  <sca:property xmi:id="_OH5OQkbZEemk_fUsBDV-iA" name="BW.CLOUD.PORT" type="XMLSchema:int" scalable="true"/>
+  <sca:property xmi:id="_OICYMEbZEemk_fUsBDV-iA" name="BW.MODULE.NAME" type="XMLSchema:string" scalable="true"/>
+  <sca:component xmi:id="_N1kIIEbZEemk_fUsBDV-iA" name="ComponentProcess" compositeext:version="1.0.0.qualifier">
+    <scaext:implementation xsi:type="BW:BWComponentImplementation" xmi:id="_N1kIIUbZEemk_fUsBDV-iA" processName="get_inventory.module.Process"/>
+    <sca:service xmi:id="_eWEGAEbZEemk_fUsBDV-iA" name="get_inventory">
+      <sca:interface.wsdl xmi:id="_eWEGAUbZEemk_fUsBDV-iA" interface="http://xmlns.example.com/20190315114715PLT#wsdl.interface(get_inventory)" scaext:wsdlLocation="../Processes/get_inventory/module/Process.bwp"/>
+    </sca:service>
+  </sca:component>
+</sca:composite>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jndi:namedResource xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jdbc="http://xsd.tns.tibco.com/amf/models/sharedresource/jdbc" xmlns:jndi="http://xsd.tns.tibco.com/amf/models/sharedresource/jndi" xmlns:subject="http://xsd.tns.tibco.com/trinity/models/identity/subject" xmi:id="_kMiKIUbZEemk_fUsBDV-iA" name="get_inventory.module.JDBCConnectionResource" type="jdbc:JdbcDataSource">
+  <jndi:reference xmi:id="_kMrUEEbZEemk_fUsBDV-iA" key="subjectJndiName" type="subject:SubjectConfiguration" value=""/>
+  <jndi:configuration xsi:type="jdbc:JdbcDataSource" xmi:id="_kMrUEUbZEemk_fUsBDV-iA" username="root" password="#!/moA24OC1js87fHfV1E8Qg==">
+    <connectionConfig xsi:type="jdbc:NonXaConnection" xmi:id="_kMrUEkbZEemk_fUsBDV-iA" jdbcDriver="com.mysql.jdbc.Driver" dbURL="jdbc:mysql://localhost:3306/bbqinventory"/>
+    <connectionProperties xmi:id="_lw6G8EbZEemk_fUsBDV-iA" key="jarFile" value="mysql"/>
+  </jndi:configuration>
+</jndi:namedResource>

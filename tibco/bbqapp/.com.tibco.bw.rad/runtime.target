@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.6"?>
+
+<target name="bw-runtime">
+<locations>
+
+<location path="/C:/tibco/bwce/2.4/config/drivers/shells/jdbc.mysql.runtime//hotfix/runtime/plugins" type="Directory"/>
+<location path="/C:/tibco/bwce/2.4/config/drivers/shells/jdbc.mysql.runtime//runtime/plugins" type="Directory"/>
+<location path="/C:/tibco/bwce/palettes/amqp/6.0//hotfix/runtime/plugins" type="Directory"/>
+<location path="/C:/tibco/bwce/palettes/amqp/6.0//runtime/plugins" type="Directory"/>
+
+
+<location path="C:/tibco/bwce/2.4/system/hotfix/lib/common" type="Directory"/>
+<location path="C:/tibco/bwce/2.4/system/lib/common" type="Directory"/>
+
+<location path="C:/tibco/bwce/2.4/system/hotfix/palettes" type="Directory"/>
+<location path="C:/tibco/bwce/2.4/system/palettes" type="Directory"/>
+
+<location path="C:/tibco/bwce/2.4/system/hotfix/shared" type="Directory"/>
+<location path="C:/tibco/bwce/2.4/system/shared" type="Profile"/>
+</locations>
+</target>
