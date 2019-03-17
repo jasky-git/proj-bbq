@@ -1,7 +1,6 @@
 <?php
 
-class OrderDAO {
-
+class OrderDAO {  
   public  function retrieveAll() {
     try {
       $sql = "select * from orders";
@@ -21,7 +20,8 @@ class OrderDAO {
       echo 'Caught Exception: ', $e->getMessage(), "\n";
     }
   }
-
+  
+  //Retrieve Order details base on Email
   public  function retrieve($email) {
     try {
       $res_array = array();
@@ -53,7 +53,7 @@ class OrderDAO {
 
         if($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
           $result2[] = new Order($row2['orderid'], $row2['itemid1'], $row2['qty1'], $row2['itemid2'], $row2['qty2'], $row2['itemid3'], $row2['qty3'], $row2['itemid4'], $row2['qty4'], $row2['itemid5'], $row2['qty5'], $row2['remarks'], $row2['created_on']);
-          
+
           $res_array[] = $row2;
         }
       }
@@ -63,12 +63,31 @@ class OrderDAO {
       echo 'Caught Exception: ', $e->getMessage(), "\n";
     }
   }
+  
+  //Retrieve Food item base on Name
+  public  function retrieveFood($itemid) {
+    try {
+      $res_array = array();
 
-  
-  
-  
-  
-  
+      $sql = "select * from inventory where itemid=:itemid";
+      $result = array();
+      $connMgr = new ConnectionManager();
+      $conn = $connMgr->getConnection2();
+
+      $stmt = $conn->prepare($sql);
+      $stmt->setFetchMode(PDO::FETCH_ASSOC);
+      $stmt->bindParam(':itemid', $itemid, PDO::PARAM_STR);
+      $stmt->execute();
+
+      if($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $result[] = new Order($row['itemid'], $row['name'], $row['description'], $row['cost'], $row['qty'], $row['updated_on']);
+      }
+      // var_dump($res_array);
+      return $result;
+    } catch (Exception $e) {
+      echo 'Caught Exception: ', $e->getMessage(), "\n";
+    }
+  }
 
     // public function add($order) {
         // // insert into order db
