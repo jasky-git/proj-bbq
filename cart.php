@@ -46,8 +46,9 @@ if (isset ($_SESSION['cart'])) {
               <table class='table table-striped' id='cart-list' border='1'>
                   <tr>
                       <th>No.</th>
-                      <th>Title</th>
-                      <th>Price</th>
+                      <th>Item Id</th>
+                      <th>Description</th>
+                      <th>Cost</th>
                       <th>Quantity</th>
                       <th>Amount</th>
                   </tr>
@@ -55,8 +56,8 @@ if (isset ($_SESSION['cart'])) {
             $count = 1;
             $total = 0.0;
             foreach($cart as $cartItem) {
-                $current_book = $cartItem->book;
-                $amount = ($current_book->price)*($cartItem->quantity);
+                $cur_food = $cartItem->food;
+                $amount = ($cur_food->cost)*($cartItem->qty);
                 $amount = number_format($amount, 2);
                 $total += $amount;
                 $total = number_format($total, 2);
@@ -64,9 +65,10 @@ if (isset ($_SESSION['cart'])) {
                 echo "
                 <tr>
                     <td>$count</td>
-                    <td>$current_book->title</td>
-                    <td>$current_book->price</td>
-                    <td>$cartItem->quantity</td>
+                    <td>$cur_food->itemid</td>
+                    <td>$cur_food->description</td>
+                    <td>$cur_food->cost</td>
+                    <td>$cartItem->qty</td>
                     <td>$amount</td>
                 </tr>
                 ";
