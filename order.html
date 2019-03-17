@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>ProjectBBQ App</title>
+    <link rel="stylesheet" href="css/style.css" />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
@@ -25,8 +26,7 @@
       integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
       crossorigin="anonymous"
     ></script>
-
-    <script src="store.js" async></script>
+    <script src="javascript/store.js" async></script>
   </head>
 
   <body>
@@ -36,8 +36,8 @@
         <div class="col">
           <div class="text-center">
             <h1 class="display-4 text-center">
-              <i class="fas fa-clipboard-list"></i
-              ><span class="text-primary"> Inventory</span>
+              <img class="img-holder-3" src="img/trolley.png" id="trolley"/>
+              <span class="text-primary"> Inventory</span>
             </h1>
           </div>
         </div>
@@ -59,6 +59,7 @@
                 <th>Description</th>
                 <th>Cost</th>
                 <th>Quantity</th>
+                <th></th>
               </tr>
             </thead>
             <tbody class="food-list">
@@ -77,21 +78,20 @@
     <script>
       $(function() {
         //Update this with TIBCO lrestdoc domain name with the port 
-        let serviceURL = "http://DESKTOP-OK24Q1B:8080/inventory"; 
+        let serviceURL = "http://One-Punch-Machine:8080/inventory"; 
         //let serviceURL = "http://DESKTOP-OCK7KKR:8080/books"; //yazid
         let rows = "";
         fetch(serviceURL)
           .then(res => res.json())
           .then(data => {
             let foodList = data.item;
-
             if (foodList === undefined) {
               $("#foodTable").empty();
               $("body").append(
                 '<div class="text-center">Something went wrong with the data. Please try again later!</div>'
               );
-            }
-
+            } 
+   
             for (item in foodList) {
               eachRow = `
               <td>${foodList[item].name}</td> 
