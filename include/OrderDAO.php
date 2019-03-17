@@ -1,30 +1,45 @@
 <?php
-require_once "ConnectionManager.php";
+
 
 class OrderDAO {
 
   public  function retrieveAll() {
     try {
       $sql = "select * from orders";
-
       $connMgr = new ConnectionManager();
       $conn = $connMgr->getConnection();
-
-      // $connx = new mysqli("localhost", "root", "");
-      // if ($connx->connect_error) {
-          // die("Connection failed: " . $connx->connect_error);
-      // }
-      // echo "Connected successfully";
-
       $stmt = $conn->prepare($sql);
       $stmt->setFetchMode(PDO::FETCH_ASSOC);
       $stmt->execute();
-      // var_dump($stmt);
+
       $result = array();
       while($row = $stmt->fetch()) {
         $result[] = new Order($row['orderid'], $row['cname'], $row['phone'], $row['email'], $row['startpoint'], $row['endpoint'], $row['delivery_date'], $row['delivery_time']);
       }
-      // var_dump($result);
+
+      return $result;
+    } catch (Exception $e) {
+      echo 'Caught Exception: ', $e->getMessage(), "\n";
+    }
+  }
+
+  public  function retrieve($email) {
+    try {
+      $sql = "select * from orders where email=:email";
+      $result = array();
+
+      $connMgr = new ConnectionManager();
+      $conn = $connMgr->getConnection();
+
+      $stmt = $conn->prepare($sql);
+      $stmt->setFetchMode(PDO::FETCH_ASSOC);
+      $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+      $stmt->execute();
+
+      if($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $result[] = new Order($row['orderid'], $row['cname'], $row['phone'], $row['email'], $row['startpoint'], $row['endpoint'], $row['delivery_date'], $row['delivery_time']);
+      }
+
       return $result;
     } catch (Exception $e) {
       echo 'Caught Exception: ', $e->getMessage(), "\n";

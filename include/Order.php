@@ -30,37 +30,16 @@ class Order {
         // }
     // }
 
-    // public function __construct0($customerId='', $cartItems='') {
-        // $this->customerId = $customerId;
-        // $this->cartItems = $cartItems;
-    // }
-
-    // public function __construct1($id='', $customerId='', $cartItems='') {
-        // $this->id = $id;
-        // $this->customerId = $customerId;
-        // $this->cartItems = $cartItems;
-    // }
-    public function __construct($orderid='', $cname='', $phone='', $email='', $startpoint='', $endpoint='', $delivery_date='', $delivery_time='') {
-        $this->orderid = $orderid;
-        $this->cname = $cname;
-        $this->phone = $phone;
-        $this->email = $email;
-        $this->startpoint = $startpoint;
-        $this->endpoint = $endpoint;
-        $this->delivery_date = $delivery_date;
-        $this->delivery_time = $delivery_time;
-    }
-    
-    // public function __construct2($orderid='', $cname='', $phone='', $email='', $startpoint='', $endpoint='', $delivery_date='', $delivery_time='') {
-        // $this->orderid = $orderid;
-        // $this->cname = $cname;
-        // $this->phone = $phone;
-        // $this->email = $email;
-        // $this->startpoint = $startpoint;
-        // $this->endpoint = $endpoint;
-        // $this->delivery_date = $delivery_date;
-        // $this->delivery_time = $delivery_time;
-    // }
+  public function __construct($orderid='', $cname='', $phone='', $email='', $startpoint='', $endpoint='', $delivery_date='', $delivery_time='') {
+      $this->orderid = $orderid;
+      $this->cname = $cname;
+      $this->phone = $phone;
+      $this->email = $email;
+      $this->startpoint = $startpoint;
+      $this->endpoint = $endpoint;
+      $this->delivery_date = $delivery_date;
+      $this->delivery_time = $delivery_time;
+  }
 }
 
 ?>

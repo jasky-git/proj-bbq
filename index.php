@@ -1,103 +1,22 @@
 <?php
-// require_once 'include/common.php';
-require_once 'include/Order.php';
-require_once 'include/OrderDAO.php';
-$dao = new OrderDAO();
-$result = $dao->retrieveAll();
+require_once 'include/common.php';
 
-// var_dump($result);
-// foreach($result as $detail) {
-  // $detail;
-// }
 
-?>
+if(isset($_POST['search'])) {
+  $searchEmail = $_POST['search'];
+  $dao = new OrderDAO();
+  $result = $dao->retrieve($searchEmail);
 
-<?php
-  
-  // $host = array('http://localhost:80/bbqorder');
-  // $server = "localhost";
-  // $username = "root";
-  // $password = "";
-  // $dbname = "bbqorder";
-  // $port = 3306;
-  // $url  = "mysql:host={$server};dbname={$dbname}";
-  // $conn = new PDO($url, $username, $password);
-  // $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  // include 'include/ConnectionManager.php';
-  // $sql = 'SELECT * FROM order';
-
-  // $connMgr = new ConnectionManager();
-  // $connx = $connMgr->getConnection();
-  
-  // // $connx = new mysqli("localhost", "root", "");
-  // // if ($connx->connect_error) {
-      // // die("Connection failed: " . $connx->connect_error);
-  // // }
-  // // echo "Connected successfully";
-
-  // $stmt = $connx->prepare($sql);
-  // $stmt->setFetchMode(PDO::FETCH_ASSOC);
-  
-  // $stmt->execute();
-  // var_dump($stmt);
-  // $result = array();
-  
-  // while($row = $stmt->fetch()) {
-    // var_dump($row);
-    // $result[] = new Order($row['orderid'], $row['cname'], $row['phone'], $row['email'], $row['startpoint'], $row['endpoint'], $row['delivery_date'], $row['delivery_time']);
-  // }
   // var_dump($result);
-  // return $result;
-?>
+  
+  if($result == null) {
+    $res = false;
+    $searchResult = "No Record Found.";
+  } else {
+    $res = true;
+  }
+}
 
-
-<?php
-  // $servername = "localhost";
-  // $username = "root";
-  // $password = "";
-
-  // // Create connection
-  // $conn = new mysqli($servername, $username, $password);
-
-  // // Check connection
-  // if ($conn->connect_error) {
-      // die("Connection failed: " . $conn->connect_error);
-  // }
-  // echo "Connected successfully";
-?>
-
-<?php
-  // $mysqli = new mysqli("localhost", "root", "");
-
-  // /* check connection */
-  // if (mysqli_connect_errno()) {
-      // printf("Connect failed: %s\n", mysqli_connect_error());
-      // exit();
-  // }
-
-  // $mysqli->select_db("bbqorder");
-  // var_dump($mysqli);
-  // /* return name of current default database */
-  // if ($result = $mysqli->query("SELECT * FROM order")) {
-    // $result = $mysqli->query("SELECT * FROM order");
-    // var_dump($result);
-    // $row = $result->fetch_row();
-    // var_dump($row);
-    // $i = 0;
-    // while($i < 7){
-      // $i++;
-      // var_dump($row[i]);
-    // }
-    // $result->close();
-  // }
-
-      // printf("Default database is %s.\n", $row[0]);
-
-  // } else {
-    // var_dump("It failed...");
-  // }
-
-  // $mysqli->close();
 ?>
 
 <html>
@@ -155,40 +74,47 @@ $result = $dao->retrieveAll();
 
           <!-- TEST -->
 
-
-
+          <form action="index.php" method="post">
+            <input type="text" name="search" placeholder="Search by Email"/>
+            <input type="submit" name="submit" value=">>"/>
+          </form>
+          
+          <?php
+            echo $searchResult;
+          ?>
 
           <table class="table table-striped">
-            <!-- <thead> -->
-              <tr>
-                <th>Order Id</th>
-                <th>Contact</th>
-                <th>Email</th>
-                <th>Startpoint</th>
-                <th>Destination</th>
-                <th>Delivery Date</th>
-                <th>Delivery Time</th>
-                <th></th>
-              </tr>
-            <!-- </thead> -->
+            <tr>
+              <th>Order Id</th>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Startpoint</th>
+              <th>Destination</th>
+              <th>Delivery Date</th>
+              <th>Delivery Time</th>
+              <th></th>
+            </tr>
             <?php
-              // echo $result;
-              foreach($result as $detail) {
-                $detail;
-                echo "
-                  <tr>
-                      <td>$detail->orderid</td>
-                      <td>$detail->cname</td>
-                      <td>$detail->phone</td>
-                      <td>$detail->email</td>
-                      <td>$detail->startpoint</td>
-                      <td>$detail->endpoint</td>
-                      <td>$detail->delivery_date</td>
-                      <td>$detail->delivery_time</td>
-                  </tr>
-                ";
+              if($res == true){
+                //Retrieval of record
+                foreach($result as $detail) {
+                  echo "
+                    <tr>
+                        <td>$detail->orderid</td>
+                        <td>$detail->cname</td>
+                        <td>$detail->phone</td>
+                        <td>$detail->email</td>
+                        <td>$detail->startpoint</td>
+                        <td>$detail->endpoint</td>
+                        <td>$detail->delivery_date</td>
+                        <td>$detail->delivery_time</td>
+                    </tr>
+                  ";
+                }
               }
             ?>
+
 
             <tbody class="food-list">
               <div class="food-row">
