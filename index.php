@@ -8,7 +8,7 @@ if(isset($_POST['search'])) {
 
   // var_dump($result[0]);
   // var_dump($result[1]);
-  
+
   if($result == null) {
     $res = false;
     $searchResult = "No Record Found.";
@@ -78,12 +78,12 @@ if(isset($_POST['search'])) {
             <input type="text" name="search" placeholder="Search by Email"/>
             <input type="submit" name="submit" value=">>"/>
           </form>
-          
+
           <?php
             echo $searchResult;
           ?>
-          <table class="table table-striped">
-            <tr class="table-primary">
+          <table class="table table-dark table-striped table-hover table-bordered">
+            <tr>
               <th>Order Id</th>
               <th>Name</th>
               <th>Phone</th>
@@ -92,11 +92,10 @@ if(isset($_POST['search'])) {
               <th>Destination</th>
               <th>Delivery Date</th>
               <th>Delivery Time</th>
-              <th></th>
             </tr>
             <?php
               if($res == true){
-                //Retrieval of order records 
+                //Retrieval of order records
                 // foreach($result[0] as $detail) {
                   // echo "
                     // <tr>
@@ -111,71 +110,74 @@ if(isset($_POST['search'])) {
                     // </tr>
                   // ";
                 // }
-                echo "<tr class='table-success'>";
+                echo "<tr class='table-active'>";
                 foreach($result[0] as $item) {
                   echo "<td>$item</td>";
                 }
                 echo "</tr>";
               }
             ?>
+            <!--
             <tbody class="food-list">
               <div class="food-row">
               </div>
-            </tbody>
+            </tbody> -->
           </table>
           <br><br>
-          
-          <h2>Items</h2>
-          <table class="table table-striped">
-            <tr class="table-primary">
-              <th>Order Id</th>
-              <th>Item 1</th>
-              <th>Qty</th>
-              <th>Item 2</th>
-              <th>Qty</th>
-              <th>Item 3</th>
-              <th>Qty</th>
-              <th>Item 4</th>
-              <th>Qty</th>
-              <th>Item 5</th>
-              <th>Qty</th>
-              <th>Remarks</th>
-              <th>Created On</th>
-              <th></th>
-            </tr>
-            <?php
-              if($res == true){
-                //Retrieval of order records 
-                echo "<tr class='table-success'>";
-                foreach($result[1] as $item) {
-                  echo "<td>$item</td>";
-                  // <td>$detail->orderid</td>
-                  // <td>$detail->itemid1</td>
-                  // <td>$detail->qty1</td>
-                  // <td>$detail->itemid2</td>
-                  // <td>$detail->qty2</td>
-                  // <td>$detail->itemid3</td>
-                  // <td>$detail->qty3</td>
-                  // <td>$detail->itemid4</td>
-                  // <td>$detail->qty4</td>
-                  // <td>$detail->itemid5</td>
-                  // <td>$detail->qty5</td>
-                  // <td>$detail->remarks</td>
-                  // <td>$detail->created_on</td>
-                }
-                echo "</tr>";
+
+          <?php
+          if($res == true){
+            echo "
+              <h2>Items</h2>
+              <table class='table table-dark table-striped table-hover table-bordered'>
+                <tr>
+                  <th>Order Id</th>
+                  <th>Item 1</th>
+                  <th>Qty</th>
+                  <th>Item 2</th>
+                  <th>Qty</th>
+                  <th>Item 3</th>
+                  <th>Qty</th>
+                  <th>Item 4</th>
+                  <th>Qty</th>
+                  <th>Item 5</th>
+                  <th>Qty</th>
+                  <th>Remarks</th>
+                  <th>Created On</th>
+                </tr>
+            ";
+          if($res == true){
+              //Retrieval of order records
+              echo "<tr>";
+              foreach($result[1] as $item) {
+                echo "<td>$item</td>";
+                // <td>$detail->orderid</td>
+                // <td>$detail->itemid1</td>
+                // <td>$detail->qty1</td>
+                // <td>$detail->itemid2</td>
+                // <td>$detail->qty2</td>
+                // <td>$detail->itemid3</td>
+                // <td>$detail->qty3</td>
+                // <td>$detail->itemid4</td>
+                // <td>$detail->qty4</td>
+                // <td>$detail->itemid5</td>
+                // <td>$detail->qty5</td>
+                // <td>$detail->remarks</td>
+                // <td>$detail->created_on</td>
               }
-            ?>
+              echo "</tr></table>";
+            }
+          }
+          ?>
+          <!--
             <tbody class="food-list">
               <div class="food-row">
               </div>
-            </tbody>
-          </table>
+            </tbody> -->
+
           </p>
         </div>
       </div>
     </div>
-
-
   </body>
 </html>
