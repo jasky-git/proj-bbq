@@ -1,6 +1,5 @@
 <?php
 
-
 class OrderDAO {
 
   public  function retrieveAll() {
@@ -25,9 +24,10 @@ class OrderDAO {
 
   public  function retrieve($email) {
     try {
+      $res_array = array();
+
       $sql = "select * from orders where email=:email";
       $result = array();
-
       $connMgr = new ConnectionManager();
       $conn = $connMgr->getConnection();
 
@@ -38,85 +38,37 @@ class OrderDAO {
 
       if($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         $result[] = new Order($row['orderid'], $row['cname'], $row['phone'], $row['email'], $row['startpoint'], $row['endpoint'], $row['delivery_date'], $row['delivery_time']);
-      }
+        // var_dump($row);
+        $res_array[] = $row;
 
-      return $result;
+        //Retrieve the records from orderdetails base on 'orderid'
+        $orderid = $row['orderid'];
+        $sql2 = "select * from orderdetails where orderid=:orderid";
+        $result2 = array();
+
+        $stmt2 = $conn->prepare($sql2);
+        $stmt2->setFetchMode(PDO::FETCH_ASSOC);
+        $stmt2->bindParam(':orderid', $orderid, PDO::PARAM_STR);
+        $stmt2->execute();
+
+        if($row2 = $stmt2->fetch(PDO::FETCH_ASSOC)) {
+          $result2[] = new Order($row2['orderid'], $row2['itemid1'], $row2['qty1'], $row2['itemid2'], $row2['qty2'], $row2['itemid3'], $row2['qty3'], $row2['itemid4'], $row2['qty4'], $row2['itemid5'], $row2['qty5'], $row2['remarks'], $row2['created_on']);
+          
+          $res_array[] = $row2;
+        }
+      }
+      // var_dump($res_array);
+      return $res_array;
     } catch (Exception $e) {
       echo 'Caught Exception: ', $e->getMessage(), "\n";
     }
   }
 
-
-
-    // $conn1 = mysqli_connect("localhost","root","") or die(mysql_error());
-    // if (mysqli_connect_errno()){
-      // echo "Failed to connect to MySQL: " . mysqli_connect_error();
-    // }
-    // mysqli_select_db($conn1, "bbqorder");
-    // $query = "SELECT * FROM order";
-    // $result = mysqli_query($conn1,$query);
-
-    // var_dump($result);
-    // mysqli_query()
-
-
-
-
-      // $sql = 'SELECT * FROM orders';
-
-      // $connMgr = new ConnectionManager();
-      // $conn = $connMgr->getConnection();
-
-      // mysql_select_db("bbqorder",$conn);
-      // $query = "SELECT * FROM orderdetails";
-      // // $result = array();
-      // $stmt = mysql_query($query,$conn);
-      // // var_dump($result);
-
-      // // $stmt = $conn->prepare($sql);
-      // $stmt->setFetchMode(PDO::FETCH_ASSOC);
-      // $stmt->execute();
-      // $result = array();
-      // while($row = $stmt->fetch()) {
-          // $result[] = new Order($row['orderid'], $row['cname'], $row['phone'], $row['email'], $row['startpoint'], $row['endpoint'], $row['delivery_date'], $row['delivery_time']);
-      // }
-
-
-
-
-      // $conn1 = mysql_connect("localhost","root","passw0rd") or die(mysql_error());
-      // $conn2 = mysql_connect("localhost","root","passw0rd") or die(mysql_error());
-
-      // mysql_select_db("asteriskcdrdb",$conn1);
-      // mysql_select_db("pj8v2",$conn2);
-
-      // $query = "SELECT * FROM cdr";
-      // $result = mysql_query($query,$conn1);
-
-      // var_dump($result);
-
-      // $query2 = "SELECT * FROM tb_did_avalaible";
-      // $result2 = mysql_query($query2,$conn2);
-
-      // var_dump($result2);
-      // return $result;
-  // }
-
-
-
-        // mysql_select_db("bbqorder",$conn);
-        // $query = "SELECT * FROM bbqorder";
-        // $result = mysql_query($query,$conn);
-
-        // mysql_select_db("bbqinventory",$conn);
-        // $query = "SELECT * FROM bbqinventory";
-        // $result = mysql_query($query,$conn);
-
-        // mysql_select_db("bbqpayment",$conn);
-        // $query = "SELECT * FROM bbqpayment";
-        // $result = mysql_query($query,$conn);
-
-
+  
+  
+  
+  
+  
 
     // public function add($order) {
         // // insert into order db

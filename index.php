@@ -1,13 +1,13 @@
 <?php
 require_once 'include/common.php';
 
-
 if(isset($_POST['search'])) {
   $searchEmail = $_POST['search'];
   $dao = new OrderDAO();
   $result = $dao->retrieve($searchEmail);
 
-  // var_dump($result);
+  // var_dump($result[0]);
+  // var_dump($result[1]);
   
   if($result == null) {
     $res = false;
@@ -82,9 +82,8 @@ if(isset($_POST['search'])) {
           <?php
             echo $searchResult;
           ?>
-
           <table class="table table-striped">
-            <tr>
+            <tr class="table-primary">
               <th>Order Id</th>
               <th>Name</th>
               <th>Phone</th>
@@ -97,32 +96,82 @@ if(isset($_POST['search'])) {
             </tr>
             <?php
               if($res == true){
-                //Retrieval of record
-                foreach($result as $detail) {
-                  echo "
-                    <tr>
-                        <td>$detail->orderid</td>
-                        <td>$detail->cname</td>
-                        <td>$detail->phone</td>
-                        <td>$detail->email</td>
-                        <td>$detail->startpoint</td>
-                        <td>$detail->endpoint</td>
-                        <td>$detail->delivery_date</td>
-                        <td>$detail->delivery_time</td>
-                    </tr>
-                  ";
+                //Retrieval of order records 
+                // foreach($result[0] as $detail) {
+                  // echo "
+                    // <tr>
+                        // <td>$detail->orderid</td>
+                        // <td>$detail->cname</td>
+                        // <td>$detail->phone</td>
+                        // <td>$detail->email</td>
+                        // <td>$detail->startpoint</td>
+                        // <td>$detail->endpoint</td>
+                        // <td>$detail->delivery_date</td>
+                        // <td>$detail->delivery_time</td>
+                    // </tr>
+                  // ";
+                // }
+                echo "<tr class='table-success'>";
+                foreach($result[0] as $item) {
+                  echo "<td>$item</td>";
                 }
+                echo "</tr>";
               }
             ?>
-
-
             <tbody class="food-list">
               <div class="food-row">
-                  <td><button class="btn btn-danger">Remove</button></td>
               </div>
             </tbody>
           </table>
-          <div class="text-right">Total Price: $</div>
+          <br><br>
+          
+          <h2>Items</h2>
+          <table class="table table-striped">
+            <tr class="table-primary">
+              <th>Order Id</th>
+              <th>Item 1</th>
+              <th>Qty</th>
+              <th>Item 2</th>
+              <th>Qty</th>
+              <th>Item 3</th>
+              <th>Qty</th>
+              <th>Item 4</th>
+              <th>Qty</th>
+              <th>Item 5</th>
+              <th>Qty</th>
+              <th>Remarks</th>
+              <th>Created On</th>
+              <th></th>
+            </tr>
+            <?php
+              if($res == true){
+                //Retrieval of order records 
+                echo "<tr class='table-success'>";
+                foreach($result[1] as $item) {
+                  echo "<td>$item</td>";
+                  // <td>$detail->orderid</td>
+                  // <td>$detail->itemid1</td>
+                  // <td>$detail->qty1</td>
+                  // <td>$detail->itemid2</td>
+                  // <td>$detail->qty2</td>
+                  // <td>$detail->itemid3</td>
+                  // <td>$detail->qty3</td>
+                  // <td>$detail->itemid4</td>
+                  // <td>$detail->qty4</td>
+                  // <td>$detail->itemid5</td>
+                  // <td>$detail->qty5</td>
+                  // <td>$detail->remarks</td>
+                  // <td>$detail->created_on</td>
+                }
+                echo "</tr>";
+              }
+            ?>
+            <tbody class="food-list">
+              <div class="food-row">
+              </div>
+            </tbody>
+          </table>
+          </p>
         </div>
       </div>
     </div>
