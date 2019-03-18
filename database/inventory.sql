@@ -12,6 +12,7 @@ CREATE TABLE `inventory` (
     description varchar(250) not null,
     cost decimal(6,2) not null,
     qty int not null
+	updated_on timestamp default current_timestamp not null
 );
 
 INSERT INTO `inventory` (itemid, name, description, cost, qty)
