@@ -17,8 +17,8 @@ CREATE TABLE `inventory` (
 
 INSERT INTO `inventory` (itemid, name, description, cost, qty)
 VALUES 
-('bbq01', 'Premium Cup Otah (Raw)', 'Fresh mixed fish, coconut milk, chilli paste, in house secret recipe chilli paste spices, salt & sugar.','13.00', '5'),
-('bbq02', 'Chicken Satay (Raw)', 'Chicken thigh meat, cumin seeds, turmeric, coriander seeds, onion, garlic, brown sugar, salt & herbs.','12.50', '10'),
-('bbq03', 'Buffalo Chicken Wing (Smoke)', 'Mid joint chicken wing, homemade smoke BBQ sauce, garlic and sesame oil.','14.40', '20'),
-('bbq04', 'Chicken Chop (BBQ)', 'Boneless chicken thigh, homemade BBQ Sauce, herbs and sesame oil.','17.00', '30'),
-('bbq05', 'Ketupat', 'Fragrance rice.','2.00', '100');
+('bbq01', 'Premium Cup Otah (Raw)', 'Fresh mixed fish, coconut milk, chilli paste, in house secret recipe chilli paste spices, salt & sugar.','13.00', '7000'),
+('bbq02', 'Chicken Satay (Raw)', 'Chicken thigh meat, cumin seeds, turmeric, coriander seeds, onion, garlic, brown sugar, salt & herbs.','12.50', '6000'),
+('bbq03', 'Buffalo Chicken Wing (Smoke)', 'Mid joint chicken wing, homemade smoke BBQ sauce, garlic and sesame oil.','14.40', '7000'),
+('bbq04', 'Chicken Chop (BBQ)', 'Boneless chicken thigh, homemade BBQ Sauce, herbs and sesame oil.','17.00', '5000'),
+('bbq05', 'Ketupat', 'Fragrance rice.','2.00', '5000');
