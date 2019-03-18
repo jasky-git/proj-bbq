@@ -12,7 +12,7 @@ CREATE TABLE `payment` (
     payment_type varchar(15) not null,
     status varchar(15) not null,
     constraint bbqpayment_pk primary key(orderid),
-    constraint bbqpayment_fk1 foreign key(orderid) references bbqorder.order(orderid)
+    constraint bbqpayment_fk1 foreign key(orderid) references bbqorder.orders(orderid)
 );
 
 INSERT INTO `payment` (orderid, totalcost, payment_type, status)
