@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid Studio 2018 (https://www.liquid-technologies.com)-->
+<xs:schema xmlns:tns="http://www.bbq_app.com/orders" elementFormDefault="qualified" targetNamespace="http://www.bbq_app.com/orders" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="inventory">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="itemid" type="xs:string" />
+                <xs:element name="name" type="xs:string" />
+                <xs:element name="cost" type="xs:decimal" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="orders">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="orderid" type="xs:int" />
+                <xs:element name="cname" type="xs:string" />
+                <xs:element name="phone" type="xs:int" />
+                <xs:element name="email" type="xs:string" />
+                <xs:element name="startpoint" type="xs:string" />
+                <xs:element name="endpoint" type="xs:string" />
+                <xs:element name="delivery_date" type="xs:date" />
+                <xs:element name="delivery_time" type="xs:string" />
+                <xs:element name="strip_id" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="orderdetails">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="orderid" type="xs:int" />
+                <xs:element name="itemid1" type="xs:string" minOccurs="0" />
+                <xs:element name="qty1" type="xs:int" minOccurs="0" />
+                <xs:element name="itemid2" type="xs:string" minOccurs="0" />
+                <xs:element name="qty2" type="xs:int" minOccurs="0" />
+                <xs:element name="itemid3" type="xs:string" minOccurs="0" />
+                <xs:element name="qty3" type="xs:int" minOccurs="0" />
+                <xs:element name="itemid4" type="xs:string" minOccurs="0" />
+                <xs:element name="qty4" type="xs:int" minOccurs="0" />
+                <xs:element name="itemid5" type="xs:string" minOccurs="0" />
+                <xs:element name="qty5" type="xs:int" minOccurs="0" />
+                
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
