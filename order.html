@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ProjectBBQ App</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+    <script src="./scripts.js"></script>
+    
+  </head>
+
+  <body>
+    <!-- <form id='payForm' action='http://127.0.0.1:5010/charge' method='POST'> -->
+    <form id='payForm' method='POST'>
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            <div class="text-center">
+              <h1 class="display-4 text-center">
+                <span class="text-primary"> Inventory</span>
+              </h1>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col" id="foodcontainer">
+            <table class="table table-striped mt-5" id="foodTable">
+              <tr>
+                <th>Item Id</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Cost ($)</th>
+                <th>Quantity</th>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div style="float:right;" class="cart-total">
+          <strong>Total Price:</strong>
+          <span class='cart-total-price' id="totalprice">0</span>
+          <!-- <input type="text" id="amountInDollars" value="35" class="mb-4" disabled/> -->
+        </div>
+        <input type="hidden" id="stripeToken" name="stripeToken" />
+        <input type="hidden" id="stripeEmail" name="stripeEmail" />
+        <input type="hidden" id="amountInCents" name="amountInCents" />
+        <!-- <button id="customButton" class="btn btn-primary item-button btn-block" type="button" onclick="stripePay()"> -->
+        <button id="customButton" class="btn btn-primary item-button btn-block mt-5" type="button" onclick="formSubmit();">
+          Proceed with Payment
+        </button>
+      </div>
+    </form>
+
+    <!-- fetch all the inventory through inventory microservice -->
+    
+  </body>
+</html>
