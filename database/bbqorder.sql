@@ -46,16 +46,22 @@ DROP TABLE IF EXISTS `orderdetails`;
 CREATE TABLE IF NOT EXISTS `orderdetails` (
   `orderid` int(11) NOT NULL  AUTO_INCREMENT,
   `itemid1` varchar(10) NOT NULL,
+  `name1` varchar (100) NOT NULL,
   `qty1` int(11) NOT NULL,
-  `itemid2` varchar(10) DEFAULT NULL,
-  `qty2` int(11) DEFAULT NULL,
-  `itemid3` varchar(10) DEFAULT NULL,
-  `qty3` int(11) DEFAULT NULL,
-  `itemid4` varchar(10) DEFAULT NULL,
-  `qty4` int(11) DEFAULT NULL,
-  `itemid5` varchar(10) DEFAULT NULL,
-  `qty5` int(11) DEFAULT NULL,
-  `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `itemid2` varchar(10) NOT NULL,
+  `name2` varchar (100) NOT NULL,
+  `qty2` int(11) NOT NULL,
+  `itemid3` varchar(10) NOT NULL,
+  `name3` varchar (100) NOT NULL,
+  `qty3` int(11) NOT NULL,
+  `itemid4` varchar(10) NOT NULL,
+  `name4` varchar (100) NOT NULL,
+  `qty4` int(11) NOT NULL,
+  `itemid5` varchar(10) NOT NULL,
+  `name5` varchar (100) NOT NULL,
+  `qty5` int(11) NOT NULL,
+  
+  
    constraint bbqorderdetails_pk primary key(orderid),
    constraint bbqorderdetails_fk1 foreign key(orderid) references orders(orderid),
    constraint bbqorderdetails_fk2 foreign key(itemid1) references inventory(itemid),
@@ -65,13 +71,11 @@ CREATE TABLE IF NOT EXISTS `orderdetails` (
    constraint bbqorderdetails_fk6 foreign key(itemid5) references inventory(itemid)
 ) ;
 
-INSERT INTO `orderdetails` (orderid, itemid1, qty1, itemid2, qty2, itemid3, qty3, itemid4, qty4, itemid5, qty5)
+INSERT INTO `orderdetails` 
+(`itemid1`,`name1`,`qty1`, `itemid2`,`name2`,`qty2`, `itemid3`,`name3`,`qty3`, 
+`itemid4`,`name4`,`qty4`, `itemid5`,`name5`,`qty5`)
 VALUES
-('1', 'bbq01', '2', 'bbq03', '1', 'bbq05', '2', 'bbq02', '3', 'bbq04', '5');
-
-INSERT INTO `orderdetails` (orderid, itemid1, qty1)
-VALUES
-('2', 'bbq01', '4');
-
--- --------------------------------------------------------
+('bbq01','Premium Cup Otah (Raw)',2, 'bbq02', 'Chicken Satay (Raw)', 5, 
+'bbq03', 'Buffalo Chicken Wing (Smoke)',0, 'bbq04', 'Chicken Chop (BBQ)', 0,
+ 'bbq05', 'Ketupat',9);
 
