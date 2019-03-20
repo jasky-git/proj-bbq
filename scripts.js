@@ -6,10 +6,9 @@ function qtyChange(event) {
   updateCartTotal();
 }
 
-var anotherarray = [];
-var newarray = [];
-
 function updateCartTotal() {
+  var anotherarray = [];
+  var newarray = [];
   $("input[type='number'").each(function() {
     newarray.push($(this).val());
   });
@@ -52,7 +51,7 @@ function updateCartTotal() {
 window.onload = function getInventory() {
   //Update this with TIBCO lrestdoc domain name with the port
   // let serviceURL = "http://fakhruls2017-eval-test.apigee.net/inventory";
-  let serviceURL = "http://DESKTOP-OCK7KKR:8080/inventory"; //yazid
+  let serviceURL = "http://DESKTOP-OCK7KKR:8082/inventory"; //yazid
   let rows = "";
   fetch(serviceURL)
     .then(res => res.json())
