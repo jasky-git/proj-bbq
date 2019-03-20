@@ -91,7 +91,7 @@ window.onload = function getInventory() {
           <td id=\"${foodList[item].cost}\" name=\"${foodList[item].cost}\">${
           foodList[item].cost
         }</td>
-          <td><input id='\"${item}\"' class='cart-item-qty' type='number' value='1'></td>`;
+          <td><input id='\"${item}\"' class='cart-item-qty' type='number' value='0'></td>`;
 
         rows += "<tr>" + eachRow + "</tr>";
         // let temp = {
