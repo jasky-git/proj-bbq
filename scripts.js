@@ -1,29 +1,15 @@
-// if (document.readyState == "loading") {
-//   document.addEventListener('DOMContentLoaded', ready)
-// } else {
-//   ready()
-// }
-
-// function ready(){
-//   var qty = document.getElementsByClassName('cart-item-qty')
-//   for (var i = 0; i<qty.length; i++){
-//     var input = qty[i]
-//     console.log(input);
-//     input.addEventListener('change', qtyChange)
-//   }
-// }
-
 function qtyChange(event) {
   var input = event.target;
   if (isNaN(input.value) || input.value < 0) {
-    input.value = 0;
+    input.value = 1;
   }
   updateCartTotal();
 }
 
+var anotherarray = [];
+var newarray = [];
+
 function updateCartTotal() {
-  var anotherarray = [];
-  var newarray = [];
   $("input[type='number'").each(function() {
     newarray.push($(this).val());
   });
@@ -118,45 +104,84 @@ window.onload = function getInventory() {
     });
 };
 
-function stripePay() {
-  var handler = StripeCheckout.configure({
-    key: "pk_test_KMXEkQZJ1jzQyMgHcZuxO8Vv",
-    image: "https://stripe.com/img/documentation/checkout/marketplace.png",
-    locale: "auto",
-    token: function(token) {
-      $("#stripeToken").val(token.id);
-      $("#stripeEmail").val(token.email);
-      $("#amountInCents").val(Math.floor($("#amountInDollars").val() * 100));
-      $("#payForm").submit();
-    }
-  });
+var stripeHandler = StripeCheckout.configure({
+  key: "pk_test_KMXEkQZJ1jzQyMgHcZuxO8Vv",
+  locale: "auto",
+  token: function(token) {
+    let stripeToken = document.getElementById("stripeToken").value;
+    stripeToken = token.id;
+    let stripeEmail = document.getElementById("stripeEmail").value;
+    stripeEmail = token.email;
+    let amount = document.getElementsByClassName("cart-total-price")[0]
+      .innerText;
+    let data = {
+      "totalcost": amount,
+      "stripid": stripeToken
+    };
+    fetch("http://fakhruls2017-eval-test.apigee.net/payment", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    }).catch(error => console.log(error));
 
-  document
-    .getElementById("customButton")
-    .addEventListener("click", function(e) {
-      var amountInCents = Math.floor($("#amountInDollars").val() * 100);
-      var displayAmount = parseFloat(
-        Math.floor($("#amountInDollars").text() * 100) / 100
-      ).toFixed(2);
-      handler.open({
-        name: "BBQ-Pay",
-        description: "Payment for BBQ Order",
-        currency: "sgd",
-        amount: amountInCents
-      });
-      e.preventDefault();
-    });
+    fetch("http://httpbin.org/post", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({})
+    }).catch(error => console.log(error))
+  }
+})
 
-  window.addEventListener("popstate", function() {
-    handler.close();
+function purchaseClicked() {
+  var price = document.getElementsByClassName("cart-total-price")[0].innerText;
+  var cents = Math.floor(price * 100);
+
+  stripeHandler.open({
+    amount: cents,
+    currency: "sgd"
   });
 }
 
-function formSubmit() {
-  updateCartTotal();
-  fetch("http://httpbin.org/post", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(arrayItems)
-  }).then(res => res.json());
-}
+// function stripePay() {
+//   var handler = StripeCheckout.configure({
+//     key: "pk_test_KMXEkQZJ1jzQyMgHcZuxO8Vv",
+//     image: "https://stripe.com/img/documentation/checkout/marketplace.png",
+//     locale: "auto",
+//     token: function(token) {
+//       $("#stripeToken").val(token.id);
+//       $("#stripeEmail").val(token.email);
+//       $("#amountInCents").val(Math.floor($("#amountInDollars").val() * 100));
+//       $("#payForm").submit();
+//     }
+//   });
+
+//   document
+//     .getElementById("customButton")
+//     .addEventListener("click", function(e) {
+//       var amountInCents = Math.floor($("#amountInDollars").val() * 100);
+//       var displayAmount = parseFloat(
+//         Math.floor($("#amountInDollars").text() * 100) / 100
+//       ).toFixed(2);
+//       handler.open({
+//         name: "BBQ-Pay",
+//         description: "Payment for BBQ Order",
+//         currency: "sgd",
+//         amount: amountInCents
+//       });
+//       e.preventDefault();
+//     });
+
+//   window.addEventListener("popstate", function() {
+//     handler.close();
+//   });
+// }
+
+// function formSubmit() {
+// updateCartTotal();
+// fetch("http://httpbin.org/post", {
+//   method: "POST",
+//   headers: { "Content-Type": "application/json" },
+//   body: JSON.stringify(arrayItems)
+// }).then(res => res.json());
+// }
+// }
