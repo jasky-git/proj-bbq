@@ -6,7 +6,7 @@
             <xs:sequence>
                 <xs:element name="orderid" type="xs:int" minOccurs="0" />
                 <xs:element name="totalcost" type="xs:decimal" minOccurs="0" />
-                <xs:element name="status" type="xs:string" minOccurs="0" />
+                <xs:element name="stripid" type="xs:string" minOccurs="0" />
             </xs:sequence>
         </xs:complexType>
     </xs:element>
