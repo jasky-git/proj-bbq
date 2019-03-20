@@ -27,26 +27,24 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `cname` varchar(80) NOT NULL,
   `phone` int(11) NOT NULL,
   `email` varchar(150) NOT NULL,
-  `startpoint` varchar(80) NOT NULL,
-  `endpoint` varchar(80) NOT NULL,
+  `address` varchar(80) NOT NULL,
   `delivery_date` date NOT NULL,
-  `delivery_time` varchar(15) NOT NULL,
-  `strip_id` varchar(100) NOT NULL
+  `delivery_time` varchar(15) NOT NULL
 
 ) ;
 
 
-INSERT INTO `orders` (cname, phone, email, startpoint, endpoint, delivery_date, delivery_time, strip_id)
+INSERT INTO `orders` (cname, phone, email, address, delivery_date, delivery_time)
 VALUES
-('Apple','91234567', 'apple@hotmail.com', '80 Stamford Rd, Singapore 178902','Avant Parc, 9 Wak Hassan Place', '2019-10-10', '0800-1000','88888888'),
-('Banana','92224588', 'banana@gmail.com', '80 Stamford Rd, Singapore 178902','Avant Parc, 9 Wak Hassan Place', '2019-05-30', '1500-1700','77777777');
+('Apple','91234567', 'apple@hotmail.com', '80 Stamford Rd, Singapore 178902', '2019-10-10', '0800-1000'),
+('Banana','92224588', 'banana@gmail.com', '80 Stamford Rd, Singapore 178902', '2019-05-30', '1500-1700');
 
 
 
 
 DROP TABLE IF EXISTS `orderdetails`;
 CREATE TABLE IF NOT EXISTS `orderdetails` (
-  `orderid` int(11) NOT NULL,
+  `orderid` int(11) NOT NULL  AUTO_INCREMENT,
   `itemid1` varchar(10) NOT NULL,
   `qty1` int(11) NOT NULL,
   `itemid2` varchar(10) DEFAULT NULL,
@@ -57,7 +55,6 @@ CREATE TABLE IF NOT EXISTS `orderdetails` (
   `qty4` int(11) DEFAULT NULL,
   `itemid5` varchar(10) DEFAULT NULL,
   `qty5` int(11) DEFAULT NULL,
-  `remarks` varchar(150) DEFAULT NULL,
   `created_on` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
    constraint bbqorderdetails_pk primary key(orderid),
    constraint bbqorderdetails_fk1 foreign key(orderid) references orders(orderid),
@@ -68,13 +65,13 @@ CREATE TABLE IF NOT EXISTS `orderdetails` (
    constraint bbqorderdetails_fk6 foreign key(itemid5) references inventory(itemid)
 ) ;
 
-INSERT INTO `orderdetails` (orderid, itemid1, qty1, itemid2, qty2, itemid3, qty3, itemid4, qty4, itemid5, qty5, remarks)
+INSERT INTO `orderdetails` (orderid, itemid1, qty1, itemid2, qty2, itemid3, qty3, itemid4, qty4, itemid5, qty5)
 VALUES
-('1', 'bbq01', '2', 'bbq03', '1', 'bbq05', '2', 'bbq02', '3', 'bbq04', '5', '');
+('1', 'bbq01', '2', 'bbq03', '1', 'bbq05', '2', 'bbq02', '3', 'bbq04', '5');
 
-INSERT INTO `orderdetails` (orderid, itemid1, qty1, remarks)
+INSERT INTO `orderdetails` (orderid, itemid1, qty1)
 VALUES
-('2', 'bbq01', '4', 'Contact 93208372 Carrot for collection');
+('2', 'bbq01', '4');
 
 -- --------------------------------------------------------
 
