@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS `payment`;
 CREATE TABLE `payment` (
     orderid int not null auto_increment,
     totalcost decimal(6,2) not null,
-    stripid varchar(15) not null,
+    stripid varchar(150) not null,
     constraint bbqpayment_pk primary key(orderid)
 );
 
