@@ -77,5 +77,8 @@ INSERT INTO `orderdetails`
 VALUES
 ('bbq01','Premium Cup Otah (Raw)',2, 'bbq02', 'Chicken Satay (Raw)', 5, 
 'bbq03', 'Buffalo Chicken Wing (Smoke)',0, 'bbq04', 'Chicken Chop (BBQ)', 0,
- 'bbq05', 'Ketupat',9);
+ 'bbq05', 'Ketupat',9),
+ ('bbq01','Premium Cup Otah (Raw)',11, 'bbq02', 'Chicken Satay (Raw)', 7, 
+'bbq03', 'Buffalo Chicken Wing (Smoke)',2, 'bbq04', 'Chicken Chop (BBQ)', 0,
+ 'bbq05', 'Ketupat',21);
 
