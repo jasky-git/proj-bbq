@@ -45,4 +45,43 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
+    <xs:complexType name="query">
+        <xs:sequence>
+            <xs:element name="orders">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="orderid" type="xs:int" />
+                        <xs:element name="cname" type="xs:string" />
+                        <xs:element name="phone" type="xs:int" />
+                        <xs:element name="email" type="xs:string" />
+                        <xs:element name="address" type="xs:string" />
+                        <xs:element name="delivery_date" type="xs:date" />
+                        <xs:element name="delivery_time" type="xs:string" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="orderdetails">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="orderid" type="xs:int" />
+                        <xs:element name="itemid1" type="xs:string" minOccurs="0" />
+                        <xs:element name="qty1" type="xs:int" minOccurs="0" />
+                        <xs:element name="name1" type="xs:string" minOccurs="0" maxOccurs="1" />
+                        <xs:element name="itemid2" type="xs:string" minOccurs="0" />
+                        <xs:element name="qty2" type="xs:int" minOccurs="0" />
+                        <xs:element name="name2" type="xs:string" minOccurs="0" maxOccurs="1" />
+                        <xs:element name="itemid3" type="xs:string" minOccurs="0" />
+                        <xs:element name="qty3" type="xs:int" minOccurs="0" />
+                        <xs:element name="name3" type="xs:string" minOccurs="0" maxOccurs="1" />
+                        <xs:element name="itemid4" type="xs:string" minOccurs="0" />
+                        <xs:element name="qty4" type="xs:int" minOccurs="0" />
+                        <xs:element name="name4" type="xs:string" minOccurs="0" maxOccurs="1" />
+                        <xs:element name="itemid5" type="xs:string" minOccurs="0" />
+                        <xs:element name="qty5" type="xs:int" minOccurs="0" />
+                        <xs:element name="name5" type="xs:string" minOccurs="0" maxOccurs="1" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
 </xs:schema>
