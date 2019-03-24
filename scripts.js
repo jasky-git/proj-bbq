@@ -51,7 +51,8 @@ function updateCartTotal() {
 window.onload = function getInventory() {
   //Update this with TIBCO lrestdoc domain name with the port
   // let serviceURL = "http://fakhruls2017-eval-test.apigee.net/inventory";
-  let serviceURL = "http://DESKTOP-OCK7KKR:8082/inventory"; //yazid
+  // let serviceURL = "http://DESKTOP-OCK7KKR:8082/inventory"; //yazid
+  let serviceURL = "http://One-Punch-Machine:8080/inventory";
   let rows = "";
   fetch(serviceURL)
     .then(res => res.json())
