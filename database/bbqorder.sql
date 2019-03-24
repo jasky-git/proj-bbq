@@ -62,13 +62,7 @@ CREATE TABLE IF NOT EXISTS `orderdetails` (
   `qty5` int(11) NOT NULL,
   
   
-   constraint bbqorderdetails_pk primary key(orderid),
-   constraint bbqorderdetails_fk1 foreign key(orderid) references orders(orderid),
-   constraint bbqorderdetails_fk2 foreign key(itemid1) references inventory(itemid),
-   constraint bbqorderdetails_fk3 foreign key(itemid2) references inventory(itemid),
-   constraint bbqorderdetails_fk4 foreign key(itemid3) references inventory(itemid),
-   constraint bbqorderdetails_fk5 foreign key(itemid4) references inventory(itemid),
-   constraint bbqorderdetails_fk6 foreign key(itemid5) references inventory(itemid)
+   constraint bbqorderdetails_pk primary key(orderid)
 ) ;
 
 INSERT INTO `orderdetails` 
