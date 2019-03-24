@@ -6,13 +6,22 @@ function qtyChange(event) {
   updateCartTotal();
 }
 
+let tempResult = []
+
 function updateCartTotal() {
+  tempResult = [];
+  let tempQty = [];
+  let tempInventory = [];
+
   var anotherarray = [];
   var newarray = [];
   $("input[type='number'").each(function() {
     newarray.push($(this).val());
+    tempQty.push($(this).val());
   });
-  console.log(newarray);
+  // console.log(newarray);
+
+  var newCounter = 0;
 
   var table = document.getElementById("foodTable"),
     rows = table.rows,
@@ -22,18 +31,33 @@ function updateCartTotal() {
     cellcount,
     c,
     cost;
+  //getting the cost  
   for (r = 1; r < rowcount; r++) {
     cells = rows[r].cells;
     cellcount = cells.length;
     for (c = 0; c < cellcount; c++) {
+      if (c == 0){
+        tempInventory.push(cells[c].textContent);
+        // console.log(cells[c].textContent)
+      }
+      if (c == 1){
+        tempInventory.push(cells[c].textContent);
+        // console.log(cells[c].textContent)
+      }
       if (c == 3) {
         cost = cells[c].textContent;
         anotherarray.push(cost);
       }
+      if(c == 4){
+        tempInventory.push(tempQty[newCounter]);
+      }
     }
+    newCounter += 1;
   }
 
-  console.log(anotherarray);
+  // console.log(tempResult)
+  tempResult = tempInventory
+  
   let total = 0;
   let counter = 0;
   while (counter < 5) {
@@ -41,10 +65,12 @@ function updateCartTotal() {
     counter += 1;
   }
 
-  console.log(total);
+  // console.log(total);
   document.getElementsByClassName("cart-total-price")[0].innerText = total;
   // document.getElementById("totalprice").innerText = total;
+
 }
+
 
 // let arrayItems = [];
 
@@ -118,17 +144,23 @@ var stripeHandler = StripeCheckout.configure({
       "totalcost": amount,
       "stripid": stripeToken
     };
-    fetch("http://fakhruls2017-eval-test.apigee.net/payment", {
+    fetch("http://DESKTOP-OCK7KKR:8080/payment", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
-    }).catch(error => console.log(error));
+    })
+      .then(res => {
+        if(res.status == 201){
+          console.log(tempResult)
+        }
+      })
+      .catch(error => console.log(error));
 
-    fetch("http://httpbin.org/post", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({})
-    }).catch(error => console.log(error))
+    // fetch("http://httpbin.org/post", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({})
+    // }).catch(error => console.log(error))
   }
 })
 
