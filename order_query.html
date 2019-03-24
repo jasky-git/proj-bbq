@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>ProjectBBQ App</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+
+  <body>
+    <form id="form" method="GET">
+      <input type="text" id="meowmeow" value="" />
+      <input type="text" id="cathowl" value="" />
+      <button type="submit" id="subButton">Submit</button>
+    </form>
+
+    <script>
+        $(document).ready(function() {
+          document.getElementById('form').addEventListener('submit', function(event){
+            event.preventDefault();
+            var input = document.getElementById('meowmeow').value;
+            var inputtwo = document.getElementById('cathowl').value;
+            
+          })
+        });
+
+      // $(function () {
+      //   $('#form').submit(function(event){
+      //     event.preventDefault();
+      //     var input = $('#meowmeow').val();
+      //     console.log(input)
+      //   })
+      // })
+
+      
+    </script>
+  </body>
+</html>
