@@ -15,49 +15,137 @@
       crossorigin="anonymous"
     />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-   </head>
+  </head>
 
   <body>
-    <form id='order' method='POST' action="orders_details.html">
+    <form id="order" method="POST">
       <div class="container">
-        <div class="row">
+        <div class="row mb-2">
           <div class="col">
             <div class="text-center">
               <h1 class="display-4 text-center">
-                <span class="text-primary"> Order</span>
+                <span class="text-primary">Order</span>
               </h1>
             </div>
-              Name: <input type="form" id="cname" name="cname" /> <br>
-              Phone Number: <input type="form" id="phone" name="phone" /> <br>
-              Email: <input type="form" id="email" name="email" /> <br>
-       
-              Delivery Address: <input type="form" id="endpoint" name="endpoint" /> <br>
-              Delivery Date: <input type="date" id="delivery_date" name="delivery_datedate" /> <br>
-              Delivery Time: <select name="delivery_time" id="delivery_time">
-                                 <option value="0800-1000">0800-1000</option>
-                                 <option value="1200-1400">1200-1400</option>
-                                 <option value="1500-1700">1500-1700</option>
-                             </select> <br>
-              <input type="submit" name="submit" onclick="formSubmit();" >
-              <!--- <button id="customButton" class="btn btn-primary item-button btn-block mt-5" type="button" onclick="formSubmit();" >
-              Proceed to Order
-              </button> --->
           </div>
         </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Name</label>
+          <div class="col-sm-10">
+            <input type="text" id="cname" name="cname" class="form-control" />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Phone Number</label>
+          <div class="col-sm-10">
+            <input type="text" id="phone" name="phone" class="form-control" />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Email</label>
+          <div class="col-sm-10">
+            <input type="text" id="email" name="email" class="form-control" />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Delivery Address</label>
+          <div class="col-sm-10">
+            <input
+              type="text"
+              id="endpoint"
+              name="endpoint"
+              class="form-control"
+            />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Delivery Date</label>
+          <div class="col-sm-10">
+            <input
+              type="date"
+              id="deliverydate"
+              name="deliverydate"
+              class="form-control"
+            />
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-sm-2 col-form-label">Delivery Time</label>
+          <div class="col-sm-10">
+            <select name="deliverytime" id="deliverytime" class="form-control">
+              <option value="0800-1000">0800-1000</option>
+              <option value="1200-1400">1200-1400</option>
+              <option value="1500-1700">1500-1700</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" id="submitButton" class="btn btn-primary btn-block">Submit</button>
+
+        <!-- Name: <input type="text" id="cname" name="cname" /> <br />
+        Phone Number: <input type="text" id="phone" name="phone" /> <br />
+        Email: <input type="text" id="email" name="email" /> <br />
+
+        Delivery Address: <input type="text" id="endpoint" name="endpoint" />
+        <br />
+        Delivery Date:
+        <input type="date" id="deliverydate" name="deliverydate" /> <br />
+        Delivery Time:
+        <select name="deliverytime" id="deliverytime">
+          <option value="0800-1000">0800-1000</option>
+          <option value="1200-1400">1200-1400</option>
+          <option value="1500-1700">1500-1700</option>
+        </select>
+        <br /> -->
+        
       </div>
     </form>
 
     <script>
-        function formSubmit() {
-          updateCartTotal();
-          fetch("http://httpbin.org/post", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(arrayItems)
-          }).then(res => res.json());
-        }
+      $(document).ready(function() {
+        document
+          .getElementById("order")
+          .addEventListener("submit", function(event) {
+            event.preventDefault();
+            let custName = document.getElementById("cname").value;
+            let phone = document.getElementById("phone").value;
+            let email = document.getElementById("email").value;
+            let deliveryadd = document.getElementById("endpoint").value;
+            let deliverydate = document.getElementById("deliverydate").value;
+            let selector = document.getElementById("deliverytime");
+            let deliverytime = selector[selector.selectedIndex].value;
+
+            let serviceUrl = `http://DESKTOP-OCK7KKR:8087/orders`;
+
+            let dataBody = {
+              orderid: "0",
+              cname: custName,
+              phone: phone,
+              email: email,
+              address: deliveryadd,
+              delivery_date: deliverydate,
+              delivery_time: deliverytime
+            };
+
+            fetch(serviceUrl, {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(dataBody)
+            })
+              .then(res => {
+                if (res.status == 201) {
+                  window.location.pathname = "/orders_details.html";
+                }
+              })
+              .catch(error => console.log(error));
+          });
+      });
     </script>
-    
-    
   </body>
 </html>

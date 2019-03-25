@@ -140,27 +140,42 @@ var stripeHandler = StripeCheckout.configure({
     })
       .then(res => {
         let tempData = {
-          
+          "orderid":tempResult[0],
+          "itemid1":tempResult[1],
+          "name1":tempResult[2],
+          "qty1":tempResult[3],
+          "itemid2":tempResult[4],
+          "name2":tempResult[5],
+          "qty2":tempResult[6],
+          "itemid3":tempResult[7],
+          "name3":tempResult[8],
+          "qty3":tempResult[9],
+          "itemid4":tempResult[10],
+          "name4":tempResult[11],
+          "qty4":tempResult[12],
+          "itemid5":tempResult[13],
+          "name5":tempResult[14],
+          "qty5":tempResult[15]
         }
 
         if(res.status == 201){
-          console.log(tempResult)
-          // fetch("http://DESKTOP-OCK7KKR:8087/orderdetails", {
-          //   method: "POST",
-          //   headers: { "Content-Type": "application/json" },
-          //   body: JSON.stringify()
-          // })
-          //   .then(res => res.json())
-          //   .catch(error => console.log(error));
+          // console.log(tempResult)
+          fetch("http://DESKTOP-OCK7KKR:8087/orderdetails", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(tempData)
+          })
+            .then(res => {
+              if(res.status == 201){
+                console.log("thank you for your payment")
+                window.location.pathname="/payment_success.html"
+              }
+            })
+            .catch(error => console.log(error));
         }
       })
       .catch(error => console.log(error));
 
-    // fetch("http://httpbin.org/post", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({})
-    // }).catch(error => console.log(error))
   }
 })
 
@@ -206,14 +221,4 @@ function purchaseClicked() {
 //   window.addEventListener("popstate", function() {
 //     handler.close();
 //   });
-// }
-
-// function formSubmit() {
-// updateCartTotal();
-// fetch("http://httpbin.org/post", {
-//   method: "POST",
-//   headers: { "Content-Type": "application/json" },
-//   body: JSON.stringify(arrayItems)
-// }).then(res => res.json());
-// }
 // }
