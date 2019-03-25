@@ -38,11 +38,9 @@ function updateCartTotal() {
     for (c = 0; c < cellcount; c++) {
       if (c == 0){
         tempInventory.push(cells[c].textContent);
-        // console.log(cells[c].textContent)
       }
       if (c == 1){
         tempInventory.push(cells[c].textContent);
-        // console.log(cells[c].textContent)
       }
       if (c == 3) {
         cost = cells[c].textContent;
@@ -56,6 +54,7 @@ function updateCartTotal() {
   }
 
   // console.log(tempResult)
+  tempInventory.unshift("0")
   tempResult = tempInventory
   
   let total = 0;
@@ -65,14 +64,10 @@ function updateCartTotal() {
     counter += 1;
   }
 
-  // console.log(total);
   document.getElementsByClassName("cart-total-price")[0].innerText = total;
   // document.getElementById("totalprice").innerText = total;
-
 }
 
-
-// let arrayItems = [];
 
 window.onload = function getInventory() {
   //Update this with TIBCO lrestdoc domain name with the port
@@ -106,12 +101,6 @@ window.onload = function getInventory() {
           <td><input id='\"${item}\"' class='cart-item-qty' type='number' value='0'></td>`;
 
         rows += "<tr>" + eachRow + "</tr>";
-        // let temp = {
-        //   "ItemID": `${foodList[item].itemid}`,
-        //   "Name": `${foodList[item].name}`,
-        //   "Cost": `${foodList[item].cost}`
-        // }
-        // arrayItems.push(temp);
       }
       $("#foodTable").append(rows);
 
@@ -150,8 +139,19 @@ var stripeHandler = StripeCheckout.configure({
       body: JSON.stringify(data)
     })
       .then(res => {
+        let tempData = {
+          
+        }
+
         if(res.status == 201){
           console.log(tempResult)
+          // fetch("http://DESKTOP-OCK7KKR:8087/orderdetails", {
+          //   method: "POST",
+          //   headers: { "Content-Type": "application/json" },
+          //   body: JSON.stringify()
+          // })
+          //   .then(res => res.json())
+          //   .catch(error => console.log(error));
         }
       })
       .catch(error => console.log(error));
