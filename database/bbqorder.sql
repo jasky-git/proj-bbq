@@ -5,21 +5,6 @@ CREATE DATABASE `bbqorder`;
 USE `bbqorder`;
 
 
-CREATE TABLE `inventory` (
-    itemid varchar(10) not null primary key,
-    name varchar(30) not null,
-	cost decimal(6,2) not null
-	);
-
-
-INSERT INTO `inventory` (itemid, name,cost)
-VALUES 
-('bbq01', 'Premium Cup Otah (Raw)','13.00'),
-('bbq02', 'Chicken Satay (Raw)', '12.50'),
-('bbq03', 'Buffalo Chicken Wing (Smoke)','14.40'),
-('bbq04', 'Chicken Chop (BBQ)', '17.00'),
-('bbq05', 'Ketupat', '2.00');
-
 
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE IF NOT EXISTS `orders` (
