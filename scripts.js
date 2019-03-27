@@ -168,7 +168,7 @@ var stripeHandler = StripeCheckout.configure({
             .then(res => {
               if(res.status == 201){
                 console.log("thank you for your payment")
-                window.location.pathname="/payment_success.html"
+                window.location.href="./payment_success.html"
               }
             })
             .catch(error => console.log(error));
