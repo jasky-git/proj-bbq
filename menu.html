@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ProjectBBQ App</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+      integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div id="navbar-frame"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <div class="text-center">
+            <h1 class="display-4 text-center mt-3 mb-4">
+              <span class="text-primary">Menu</span>
+            </h1>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col" id="foodcontainer">
+          <table class="table table-striped" id="foodTable">
+            <tr id="headerRow"></tr>
+          </table>
+        </div>
+      </div>
+      <button id="customButton" class="btn btn-primary item-button btn-block mt-2" type="button" onclick="orderClicked();">
+          Make An Order With Us!
+        </button>
+    </div>
+
+    <script>
+      function orderClicked(){
+        window.location.href = "./orders.html";
+      }
+
+      $(document).ready(function() {
+        $("#navbar-frame").load("./navbar.html");
+        let serviceURL = "http://DESKTOP-OCK7KKR:8082/inventory";
+        let headerRow = `<th>Item Id</th><th>Name</th><th>Description</th><th>Cost ($)</th>`;
+        $("#headerRow").append(headerRow);
+        let rows = "";
+        fetch(serviceURL)
+          .then(res => res.json())
+          .then(data => {
+            let foodList = data.item;
+            console.log(foodList);
+            if (foodList === undefined) {
+              $("#foodTable").empty();
+              $("#headerRow").empty();
+              $("body").append(
+                '<div class="text-center">Something went wrong with the data. Please try again later!</div>'
+              );
+            }
+
+            for (var item = 0; item < foodList.length; item++) {
+              eachRow = `
+              <td>${foodList[item].itemid}</td>
+              <td>${foodList[item].name}</td>
+              <td>${foodList[item].description}</td>
+              <td>${foodList[item].cost}</td>
+              `;
+
+              rows += "<tr>" + eachRow + "</tr>";
+            }
+            $("#foodTable").append(rows);
+          })
+          .catch(error => {
+            $("#foodTable").empty();
+            $("#headerRow").empty();
+            $("body").append(
+              '<div class="text-center">Something went wrong with the data. Please try again later!</div>'
+            );
+          });
+      });
+    </script>
+  </body>
+</html>

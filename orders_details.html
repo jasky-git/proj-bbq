@@ -22,13 +22,14 @@
 
   <body>
     <!-- <form id='payForm' action='http://127.0.0.1:5010/charge' method='POST'> -->
+    <div id="navbar-frame"></div>
     <form id='payForm' method='POST'>
       <div class="container">
         <div class="row">
           <div class="col">
             <div class="text-center">
-              <h1 class="display-4 text-center">
-                <span class="text-primary"> Inventory</span>
+              <h1 class="display-4 text-center mt-3 mb-4">
+                <span class="text-primary">Inventory</span>
               </h1>
             </div>
           </div>
@@ -36,14 +37,15 @@
 
         <div class="row">
           <div class="col" id="foodcontainer">
-            <table class="table table-striped mt-5" id="foodTable">
-              <tr>
+            <table class="table table-striped" id="foodTable">
+              <tr id="headerRow"></tr>
+              <!-- <tr>
                 <th>Item Id</th>
                 <th>Name</th>
                 <th>Description</th>
                 <th>Cost ($)</th>
                 <th>Quantity</th>
-              </tr>
+              </tr> -->
             </table>
           </div>
         </div>
@@ -61,8 +63,6 @@
         </button>
       </div>
     </form>
-
-    <!-- fetch all the inventory through inventory microservice -->
     
   </body>
 </html>

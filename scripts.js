@@ -68,12 +68,11 @@ function updateCartTotal() {
   // document.getElementById("totalprice").innerText = total;
 }
 
-
 window.onload = function getInventory() {
-  //Update this with TIBCO lrestdoc domain name with the port
-  // let serviceURL = "http://fakhruls2017-eval-test.apigee.net/inventory";
-  let serviceURL = "http://DESKTOP-OCK7KKR:8082/inventory"; //yazid
-  // let serviceURL = "http://One-Punch-Machine:8080/inventory";
+  $("#navbar-frame").load("./navbar.html");
+  let serviceURL = "http://DESKTOP-OCK7KKR:8082/inventory";
+  let headerRow = `<th>Item Id</th><th>Name</th><th>Description</th><th>Cost ($)</th><th>Quantity</th>`;
+  $("#headerRow").append(headerRow);
   let rows = "";
   fetch(serviceURL)
     .then(res => res.json())
@@ -81,6 +80,7 @@ window.onload = function getInventory() {
       let foodList = data.item;
       if (foodList === undefined) {
         $("#foodTable").empty();
+        $("#headerRow").empty();
         $("body").append(
           '<div class="text-center">Something went wrong with the data. Please try again later!</div>'
         );
@@ -113,6 +113,7 @@ window.onload = function getInventory() {
 
     .catch(error => {
       $("#foodTable").empty();
+      $("#headerRow").empty();
       $("body").append(
         '<div class="text-center">Something went wrong with the data. Please try again later!</div>'
       );
@@ -133,7 +134,7 @@ var stripeHandler = StripeCheckout.configure({
       "totalcost": amount,
       "stripid": stripeToken
     };
-    fetch("http://DESKTOP-OCK7KKR:8080/payment", {
+    fetch("http://DESKTOP-OCK7KKR:8081/payment", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)

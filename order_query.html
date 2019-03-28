@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
   <head>
     <title>ProjectBBQ App</title>
@@ -17,13 +18,14 @@
   </head>
 
   <body>
+    <div id="navbar-frame"></div>
     <form id="form" method="GET">
       <div class="container">
         <div class="row">
           <div class="col">
-            <div class="text-center">
+            <div class="text-center mt-3">
               <h1 class="display-4 text-center">
-                <span class="text-primary">Order Details</span>
+                <span class="text-primary">Check Your Order</span>
               </h1>
             </div>
           </div>
@@ -72,6 +74,7 @@
 
     <script>
       $(document).ready(function() {
+        $("#navbar-frame").load("./navbar.html");
         document
           .getElementById("form")
           .addEventListener("submit", function(event) {
@@ -137,14 +140,6 @@
               });
           });
       });
-
-      // $(function () {
-      //   $('#form').submit(function(event){
-      //     event.preventDefault();
-      //     var input = $('#meowmeow').val();
-      //     console.log(input)
-      //   })
-      // })
     </script>
   </body>
 </html>

@@ -18,15 +18,14 @@
   </head>
 
   <body>
+    <div id="navbar-frame"></div>
     <form id="order" method="POST">
       <div class="container">
-        <div class="row mb-2">
-          <div class="col">
-            <div class="text-center">
-              <h1 class="display-4 text-center">
-                <span class="text-primary">Order</span>
-              </h1>
-            </div>
+        <div class="col">
+          <div class="text-center mt-3 mb-4">
+            <h1 class="display-4 text-center">
+              <span class="text-primary">Order</span>
+            </h1>
           </div>
         </div>
 
@@ -86,13 +85,19 @@
           </div>
         </div>
 
-        <button type="submit" id="submitButton" class="btn btn-primary btn-block">Submit</button>
-        
+        <button
+          type="submit"
+          id="submitButton"
+          class="btn btn-primary btn-block"
+        >
+          Submit
+        </button>
       </div>
     </form>
 
     <script>
       $(document).ready(function() {
+        $("#navbar-frame").load("./navbar.html");
         document
           .getElementById("order")
           .addEventListener("submit", function(event) {
@@ -105,7 +110,7 @@
             let selector = document.getElementById("deliverytime");
             let deliverytime = selector[selector.selectedIndex].value;
 
-            let serviceUrl = `http://DESKTOP-OK24Q1B:8087/orders`;
+            let serviceUrl = `http://DESKTOP-OCK7KKR:8087/orders`;
 
             let dataBody = {
               orderid: "0",
