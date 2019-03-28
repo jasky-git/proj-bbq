@@ -11,3 +11,6 @@ payment_sucess -> change service URL to "http://XXXXXX:8087/ordersdone"
 scripts.js ->change these 3 service URL to "http://xxxxxxx:8087/orderdetails"
 			"		to "http://xxxxxx:8080/inventory"
 					to "http://xxx:8081/payment"
+
+
+At order_details.html, when entering card for payment, pls enter "4242 4242 4242 4242" for card number, any values for the rest of the inputs as it is in testing mode.
