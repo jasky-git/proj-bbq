@@ -55,7 +55,7 @@
         fetch(serviceURL)
           .then(res => res.json())
           .then(data => {
-            let foodList = data.item;
+            let foodList = data.Inventory;
             console.log(foodList);
             if (foodList === undefined) {
               $("#foodTable").empty();

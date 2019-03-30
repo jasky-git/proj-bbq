@@ -77,7 +77,7 @@ window.onload = function getInventory() {
   fetch(serviceURL)
     .then(res => res.json())
     .then(data => {
-      let foodList = data.item;
+      let foodList = data.Inventory;
       if (foodList === undefined) {
         $("#foodTable").empty();
         $("#headerRow").empty();
