@@ -5,7 +5,7 @@ inventory > bbqorder > bbqpayment
 Service URL to change:
 
 menu.html -> change service URL to http://xxxxxx:8080/inventory"
-order_query.html -> change service URL to "http://xxxxxxxx:8085/querynow?orderid=${order}&email=${email}"
+order_query.html -> change service URL to "http://xxxxxxxx:8087/query?orderid=${order}&email=${email}"
 orders.html -> change service URL to "http://xxxxxx:8087/orders"		
 		
 payment_success -> change service URL to "http://XXXXXX:8087/ordersdone"
