@@ -48,8 +48,8 @@
 
       $(document).ready(function() {
         $("#navbar-frame").load("./navbar.html");
-        let serviceURL = "http://DESKTOP-OCK7KKR:8082/inventory";
-        let headerRow = `<th>Item Id</th><th>Name</th><th>Description</th><th>Cost ($)</th>`;
+        let serviceURL = "http://DESKTOP-OCK7KKR:8080/inventory";
+        let headerRow = `<th>Item Id</th><th>Name</th><th>Description</th><th>Cost ($)</th><th>Qty Left</th>`;
         $("#headerRow").append(headerRow);
         let rows = "";
         fetch(serviceURL)
@@ -71,6 +71,7 @@
               <td>${foodList[item].name}</td>
               <td>${foodList[item].description}</td>
               <td>${foodList[item].cost}</td>
+              <td>${foodList[item].qty}</td>
               `;
 
               rows += "<tr>" + eachRow + "</tr>";
