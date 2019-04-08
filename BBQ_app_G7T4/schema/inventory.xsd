@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--Created with Liquid Studio 2018 (https://www.liquid-technologies.com)-->
+<schema xmlns:tns="http://www.example.org/Inventory" elementFormDefault="qualified" targetNamespace="http://www.example.org/Inventory" xmlns="http://www.w3.org/2001/XMLSchema">
+    <complexType name="Inventory">
+        <sequence>
+            <element name="itemid" type="string" minOccurs="0" />
+            <element name="name" type="string" minOccurs="0" />
+            <element name="description" type="string" minOccurs="0" />
+            <element name="cost" type="decimal" minOccurs="0" />
+            <element name="qty" type="integer" minOccurs="0" />
+        </sequence>
+    </complexType>
+    <element name="Inventory" type="tns:Inventory" />
+    <complexType name="Inventories">
+        <sequence>
+            <element ref="tns:Inventory" minOccurs="0" maxOccurs="unbounded" />
+        </sequence>
+    </complexType>
+    <element name="Inventories" type="tns:Inventories" />
+</schema>

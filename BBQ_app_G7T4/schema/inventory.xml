@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid Studio 2018 (https://www.liquid-technologies.com) -->
+<inventory>
+    <item itemid= "bbq01">
+        <name> Premium Cup Otah (Raw)</name>
+        <description>Fresh mixed fish, coconut milk, chilli paste, in house secret recipe chilli paste spices, salt and sugar.</description>
+        <cost>13.00</cost>
+        <quantity> 50 </quantity>
+    </item>
+</inventory>

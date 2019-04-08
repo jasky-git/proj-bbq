@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid Studio 2018 (https://www.liquid-technologies.com) -->
+<payment>
+    <orderid> 1</orderid>
+    <totalcost> 16.55</totalcost>
+    <status>succeeded</status>
+</payment>
