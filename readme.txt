@@ -14,6 +14,9 @@ scripts.js ->change these 3 service URL to "http://xxxxxxx:8087/orderdetails"
 			"		to "http://xxxxxx:8080/inventory"
 					to "http://xxx:8081/payment"
 
-For tibco mirco svc, orders.module -> resources -> HttpClientResource1.httpClientResource: change "default host" to ur machine's name i.e. LAPTOP-H9NKRSOK
+For tibco mirco svc, pls change for orders.module -> resources -> HttpClientResource1.httpClientResource: change "default host" to ur machine's name i.e. LAPTOP-H9NKRSOK
 
+*Note: SendMail Activity in orders microservice only works when connected to SMU internet.
+
+When using the UI,
 At order_details.html, when entering card for payment, pls enter "4242 4242 4242 4242" for card number, any values for the rest of the inputs as it is in testing mode.
